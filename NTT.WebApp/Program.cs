@@ -11,9 +11,17 @@ builder.Services.AddDbContext<Context>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
+//builder.Services.AddDefaultIdentity<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
+//
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddClaimsPrincipalFactory<UserClaimsPrincipalFactory<ApplicationUser, IdentityRole>>()
+        .AddEntityFrameworkStores<Context>()
+        .AddDefaultTokenProviders()
+        .AddDefaultUI();
+//
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 

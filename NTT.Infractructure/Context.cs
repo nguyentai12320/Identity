@@ -13,5 +13,6 @@ namespace NTT.Infractructure
     public class Context : IdentityDbContext<ApplicationUser>
     {
         public Context(DbContextOptions<Context> options) : base(options) { }
+        //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }
